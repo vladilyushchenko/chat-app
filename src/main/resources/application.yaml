@@ -1,1 +1,6 @@
-
+spring:
+  redis:
+    host: ${redis.host}
+    port: ${redis.port}
+jwt:
+  secret: ${jwt.secret}
