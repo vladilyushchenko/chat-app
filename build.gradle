@@ -23,9 +23,8 @@ dependencies {
     // Validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-    // Websocket
-    implementation 'org.springframework:spring-websocket:5.2.2.RELEASE'
-    implementation 'org.springframework:spring-messaging:5.2.2.RELEASE'
+    // WebSocket
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
 
     // Redis
     implementation 'org.springframework.data:spring-data-redis'
