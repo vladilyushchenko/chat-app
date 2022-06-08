@@ -17,3 +17,9 @@ Chat application with JWT authorization.
 - <b>POST /api/v1/login --- login endpoit 
 - <b>POST /api/v1/token/refresh --- refresh token
 - <b>ws://host-name/chat --- websocket endpoint
+
+### Run instruction
+---
+1. Run redis on your machine (or any other machine with web-access)
+2. Run spring-boot application, add redis properties to environment (look for application.yaml)
+3. Open index.html file in fron-app
