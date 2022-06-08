@@ -14,12 +14,14 @@ import static org.softarex.chat.dto.MessageType.NEW_USER;
 public class ChatService {
 
     private final SimpMessagingTemplate template;
+    private final UserService userService;
 
     public void handleUserJoin(String username) {
         template.convertAndSend(MESSAGES_TOPIC, new ChatMessageDto(username, NEW_USER));
     }
 
     public void handleUserLeave(String username) {
+        userService.deleteByUsername(username);
         template.convertAndSend(MESSAGES_TOPIC, new ChatMessageDto(username, LEAVE));
     }
 }

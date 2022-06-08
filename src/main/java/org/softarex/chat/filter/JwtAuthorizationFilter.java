@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 import static java.util.Objects.nonNull;
+import static org.softarex.chat.util.AuthUtil.extractTokenFromHeader;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
-import static org.springframework.util.StringUtils.hasText;
 
 @RequiredArgsConstructor
 public class JwtAuthorizationFilter extends GenericFilterBean {
@@ -24,7 +24,7 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
-        String token = getTokenFromRequest((HttpServletRequest) request);
+        String token = extractTokenFromHeader(((HttpServletRequest) request).getHeader(AUTHORIZATION));
         if (nonNull(token)) {
             authenticate(token);
         }
@@ -38,13 +38,5 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
         } catch (JWTVerificationException e) {
             // authorizing failed
         }
-    }
-
-    private String getTokenFromRequest(HttpServletRequest request) {
-        String bearer = request.getHeader(AUTHORIZATION);
-        if (hasText(bearer) && bearer.startsWith("Bearer ")) {
-            return bearer.substring(7);
-        }
-        return null;
     }
 }

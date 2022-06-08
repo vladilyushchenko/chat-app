@@ -1,5 +1,6 @@
 package org.softarex.chat.exception;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,11 +11,13 @@ import java.time.LocalDateTime;
 import static org.softarex.chat.constants.ErrorConstants.SERVER_ERROR_MSG;
 import static org.springframework.http.HttpStatus.*;
 
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ResponseError> handleServerException(Exception e) {
+        log.warn("INTERNAL SERVER ERROR {}", e.getMessage());
         return ResponseEntity.status(INTERNAL_SERVER_ERROR)
                 .body(getResponseError(SERVER_ERROR_MSG, INTERNAL_SERVER_ERROR));
     }

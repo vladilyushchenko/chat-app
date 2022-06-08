@@ -1,4 +1,4 @@
-package org.softarex.chat.config.websocket;
+package org.softarex.chat.event;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +10,7 @@ import org.springframework.web.socket.messaging.SessionConnectEvent;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class WebsocketConnectEvent implements ApplicationListener<SessionConnectEvent> {
+public class WebsocketConnectListener implements ApplicationListener<SessionConnectEvent> {
 
     private final ChatService chatService;
 

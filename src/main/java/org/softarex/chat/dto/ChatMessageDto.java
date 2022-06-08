@@ -15,5 +15,5 @@ public class ChatMessageDto implements Serializable {
     @NotNull
     private String author;
     @NotNull
-    private MessageType type;
+    private MessageType messageType;
 }
